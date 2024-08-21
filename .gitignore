@@ -256,4 +256,7 @@ __debug_bin
 
 # Other
 /.run/
-/log2fluent
+lambda.zip
+/terraform/.terraform/
+/terraform/*.tfstate*
+bootstrap
