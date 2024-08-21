@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {version: "1.0"}
+  schemes: HTTP
+};
+
+// PingService is a gRPC service that provides a simple ping.
+service PingService {
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {get: "/v1/ping"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Ping the server."
+      tags: ["ping"]
+    };
+  }
+}
+
+message PingRequest {}
+
+message PingResponse {
+  string message = 1;
+}
