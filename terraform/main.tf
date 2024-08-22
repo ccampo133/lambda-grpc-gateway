@@ -41,5 +41,5 @@ module "api_gateway" {
 }
 
 output "endpoint" {
-  value = "${module.api_gateway.api_endpoint}/v1/ping"
+  value = module.api_gateway.api_endpoint
 }
