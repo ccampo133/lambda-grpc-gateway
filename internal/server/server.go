@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io"
 	"net"
 	"net/http"
 	"time"
@@ -17,7 +16,6 @@ import (
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -102,10 +100,6 @@ func (app *ApplicationServer) Init(ctx context.Context) error {
 		// best practice.
 		ReadHeaderTimeout: 1 * time.Minute,
 	}
-
-	// Turn off gRPC logging. We don't want to see gRPC logs in the output.
-	// Prompted by this issue: https://github.com/grpc-ecosystem/grpc-gateway/issues/4605
-	grpclog.SetLoggerV2(grpclog.NewLoggerV2(io.Discard, io.Discard, io.Discard))
 
 	// Done!
 	app.initialized = true
